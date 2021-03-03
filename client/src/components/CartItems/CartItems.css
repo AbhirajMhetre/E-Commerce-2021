@@ -1,0 +1,32 @@
+/* .cart{
+    display: flex;
+    justify-content: center;
+
+} */
+
+
+.cart-item{
+    margin:30px;
+    display: flex;
+    width: 700px;
+    background-color: rgb(248, 242, 245);
+    border-radius: 23px;
+    padding: 30px;
+}
+
+.item-image{
+    height: 250px;
+    /* padding: 20px; */
+    border-radius: 30px;
+}
+
+.item-details{
+    margin:30px;
+}
+
+.item-price{
+    display: flex;
+    /* justify-content: flex-end; */
+    margin: 30px;
+}
+
