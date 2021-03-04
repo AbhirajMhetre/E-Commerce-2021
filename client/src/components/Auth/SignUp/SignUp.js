@@ -1,11 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Avatar, Button, CssBaseline, TextField, Grid, Typography,Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
+import axios from 'axios';
 
-import './SignUp.css'
+import './SignUp.css';
 
-const SignUp = () => {
+const SignUp = (register, isAuthenticated) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: ''
+  });
+
+  const { name, email, password } = formData;
+
+  const onChange = (event) => {
+    setFormData({ ...formData, [event.target.id]: event.target.value });
+  }
+    
+  const onSubmit = () => {
+    axios.post('/api/users', formData);
+    console.log(formData);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -26,9 +43,11 @@ const SignUp = () => {
                 variant="outlined"
                 required
                 fullWidth
-                id="userName"
+                id="name"
                 label="UserName"
                 autoFocus
+                value={name}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -40,6 +59,8 @@ const SignUp = () => {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={email}
+                onChange={onChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -52,6 +73,8 @@ const SignUp = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={onChange}
               />
             </Grid>
           </Grid>
@@ -61,12 +84,13 @@ const SignUp = () => {
             variant="contained"
             color="primary"
             className="submit"
+            onClick={onSubmit}
           >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <NavLink to="/sign-in" variant="body2">
+              <NavLink to="/users/login" variant="body2">
                 Already have an account? Sign in
               </NavLink>
             </Grid>

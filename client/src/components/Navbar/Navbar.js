@@ -18,7 +18,7 @@ const Navbar = (props) => {
                         edge="start"
                         color="inherit"
                     >
-                      <NavLink to="/" style={{ textDecoration: 'none', color:'inherit' }}>E-Commerce</NavLink>  
+                      <NavLink to="/products" style={{ textDecoration: 'none', color:'inherit' }}>E-Commerce</NavLink>  
                     </IconButton>
                     <div className="search"> 
                         <input 
@@ -33,7 +33,7 @@ const Navbar = (props) => {
                         
                     </div>
                     <div>
-                        <NavLink exact to="/sign-in" style={{ textDecoration: 'none', color:'inherit' }}>
+                        <NavLink exact to="/users" style={{ textDecoration: 'none', color:'inherit' }}>
                         <IconButton color="inherit">
                           <AccountCircle />
                         </IconButton>
@@ -41,7 +41,7 @@ const Navbar = (props) => {
                     </div>
                     <div>   
                         <IconButton color="inherit">
-                        <NavLink exact to="/cart" style={{ textDecoration: 'none', color:'inherit' }}>
+                        <NavLink exact to="/orders" style={{ textDecoration: 'none', color:'inherit' }}>
                             <ShoppingCartIcon/></NavLink>
                         </IconButton>
                     </div>
