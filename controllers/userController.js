@@ -1,6 +1,7 @@
 import asyncHandler from 'express-async-handler'
 import generateToken from '../utils/generateToken.js'
 import User from '../models/userModel.js'
+import { notFound, errorHandler } from '../middleware/errorMiddleware.js'
 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
@@ -21,7 +22,8 @@ const authUser = asyncHandler(async (req, res) => {
       })
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    errorHandler(err, req, res);
+    //res.status(500).send('Server Error');
   }
 
 })
@@ -55,7 +57,7 @@ const registerUser = asyncHandler(async (req, res) => {
       })
   } catch (err) {
     console.error(err.message);
-    res.status(500).send(err.message);
+    errorHandler(err, req, res);
   }
 })
 
@@ -75,7 +77,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error, User not found');
+    errorHandler(err, req, res);
   }
 
 })
@@ -105,7 +107,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error While updating user profile');
+    errorHandler(err, req, res);
   }
 
 })
@@ -119,7 +121,7 @@ const getUsers = asyncHandler(async (req, res) => {
     res.json(users)
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error while fetching all users');
+    errorHandler(err, req, res);
   }
 
 })
@@ -134,7 +136,7 @@ const deleteUser = asyncHandler(async (req, res) => {
       res.json({ message: 'User removed' })
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error while deleting user');
+    errorHandler(err, req, res);
   }
 
 })
@@ -148,7 +150,7 @@ const getUserById = asyncHandler(async (req, res) => {
     res.json(user)
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error, User not found');
+    errorHandler(err, req, res);
   }
 
 })
@@ -174,7 +176,7 @@ const updateUser = asyncHandler(async (req, res) => {
       })
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error, User not found');
+    errorHandler(err, req, res);
   }
 
 })

@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/orderModel.js'
+import { notFound, errorHandler } from '../middleware/errorMiddleware.js'
 
 // @desc    Create new order
 // @route   POST /api/orders
@@ -30,7 +31,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
     }
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    errorHandler(err, req, res);
   }
   
 })
@@ -47,7 +48,7 @@ const getOrderById = asyncHandler(async (req, res) => {
     res.json(order);
 } catch (err) {
   console.error(err.message);
-  res.status(500).send('Server Error');
+  errorHandler(err, req, res);
 }
 })
 
@@ -63,7 +64,7 @@ const getMyOrders = asyncHandler(async (req, res) => {
   res.json(orders)
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    errorHandler(err, req, res);
   }
 })
 
@@ -76,7 +77,7 @@ const getOrders = asyncHandler(async (req, res) => {
   res.json(orders)
 } catch (err) {
   console.error(err.message);
-  res.status(500).send('Server Error');
+  errorHandler(err, req, res);
 }
 })
 

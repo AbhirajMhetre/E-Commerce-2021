@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Product from '../models/productModel.js'
+import { notFound, errorHandler } from '../middleware/errorMiddleware.js'
 
 // @desc    Fetch all products
 // @route   GET /api/products
@@ -27,7 +28,7 @@ const getProducts = asyncHandler(async (req, res) => {
   res.json({ products, page, pages: Math.ceil(count / pageSize) })
   } catch (err) {
       console.error(err.message);
-      res.status(500).send('Server Error');
+      errorHandler(err, req, res);
     }
 })
 
@@ -40,7 +41,7 @@ const getProductById = asyncHandler(async (req, res) => {
       res.json(product)
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    errorHandler(err, req, res);
   }
 
 })
@@ -55,7 +56,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
       res.json({ message: 'Product removed' })
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    errorHandler(err, req, res);
   }
   
 })
@@ -88,7 +89,7 @@ const createProduct = asyncHandler(async (req, res) => {
     res.status(201).json(createdProduct)
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    errorHandler(err, req, res);
   }
 
 })
@@ -121,7 +122,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    errorHandler(err, req, res);
   }
  
 })
