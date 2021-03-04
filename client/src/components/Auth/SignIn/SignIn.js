@@ -1,25 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Avatar, Button, CssBaseline, TextField, Grid, Typography,Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect, Route } from 'react-router-dom';
 import axios from 'axios';
  
 import './SignIn.css';
 
-const SignIn = () => {
+const SignIn = (props) => {
   const [formData, setFormData] = useState({
     email: '',
-    password: ''
+    password:''
   });
 
   const { email, password } = formData;
+  
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.id]: e.target.value });
 
-  const onSubmit = e => {
-    axios.post('/api/users/login', formData);
-    console.log(formData);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    axios.post('/api/users/login', formData)
+      .then(res => {
+        props.history.push(`/products`)
+      } )
+      .catch(err=> {
+        alert("username or password is invalid")
+      })
+    //console.log(formData);
   };
   return (
     <Container component="main" maxWidth="xs" style={{marginBottom:'20px'}}>

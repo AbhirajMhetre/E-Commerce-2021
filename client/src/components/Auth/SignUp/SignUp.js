@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import './SignUp.css';
 
-const SignUp = (register, isAuthenticated) => {
+const SignUp = (props) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,9 +19,16 @@ const SignUp = (register, isAuthenticated) => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
   }
     
-  const onSubmit = () => {
-    axios.post('/api/users', formData);
-    console.log(formData);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    axios.post('/api/users', formData)
+      .then(res => {
+        props.history.push(`/products`)
+      } )
+      .catch(err=> {
+        alert("username or password is invalid")
+      })
+    // props.history.push(`/products`)
   };
 
   return (
