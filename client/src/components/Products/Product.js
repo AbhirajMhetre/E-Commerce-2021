@@ -1,31 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button } from '@material-ui/core';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import './ItemCard.css';
-import ShoppingImg from '../../assets/images/shopping.PNG';
+import './Product.css';
+import { fetchProducts } from '../../actions/productActions'
 
 
-const ItemCard = () => {
+const Product = ({ 
+    product:{_id, name, image, brand, category,description, price}
+}) => {
     return(
         <Card className="card">
             <CardActionArea>
                 <CardMedia
-                    image={ShoppingImg}
+                    image={image}
                     title="Shoping Item"
                     className="card-image"
                 />
                 <CardContent className="card-content">
                     
                         <Typography gutterBottom variant="h5" component="h2">
-                            Shopping Item Name
+                            {name}
                         </Typography>
                         <Typography gutterBottom variant="h5" component="h2">
-                            <AttachMoneyIcon style={{height:'40px', marginBottom:'-12px'}} />20.00
+                            <AttachMoneyIcon style={{height:'40px', marginBottom:'-12px'}} />{price}
                         </Typography>
                     
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Shopping Item Description
+                        {description}
                     </Typography>
                 </CardContent>
             </CardActionArea>
@@ -37,4 +41,12 @@ const ItemCard = () => {
     );
 }
 
-export default ItemCard;
+Product.propTypes = {
+    product: PropTypes.object.isRequired,
+  };
+  
+  const mapStateToProps = state => ({
+  product: state.product
+});
+
+export default connect(mapStateToProps, { fetchProducts })(Product);

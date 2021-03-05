@@ -1,14 +1,14 @@
 import React from 'react'
 
 import "./Home.css";
-import Items from '../Items/Items';
+import Products from '../../components/Products/Products';
 import Header from '../../components/Header/Header'
 
 const Home = () => {
     return(
         <>
             <Header/>
-            <Items/>
+            <Products />
         </>
     );
 }
