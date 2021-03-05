@@ -1,8 +1,8 @@
 import { FETCH_PRODUCTS, PRODUCT_ERROR } from './actionTypes';
 import axios from 'axios';
 
-export const fetchProducts = async dispatch => {
-    // axios.get(`/api/products/`)
+export const fetchProducts = () => async dispatch => {
+   
     try {
     const res = await axios.get('/api/products');
 

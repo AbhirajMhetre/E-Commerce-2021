@@ -7,20 +7,23 @@ import './Products.css';
 import Product from './Product';
 
 
-const Products = ({ fetchProducts, product: { products, loading } }) => {
+// const Products = ({ fetchProducts, product: { products, loading } }) => {
+  const Products = (props) => {
     useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+    props.fetchProducts();
+  }, [props.fetchProducts]);
 
-
-    return(
+    return props.product.loading ? (
+    <div>loading..</div>
+  ) : (
         <div className="item">
-            {products.map(product => (
-          <Product key={product._id} product={product} />
+            {props.product.products.products.map(product => (
+            <Product key={product._id} product={product}/>
+            
         ))}
         </div>
-    );
-}
+      );
+};
 
 Products.propTypes = {
   fetchProducts: PropTypes.func.isRequired,

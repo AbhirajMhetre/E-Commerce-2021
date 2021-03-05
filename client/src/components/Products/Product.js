@@ -6,11 +6,13 @@ import { connect } from 'react-redux';
 
 import './Product.css';
 import { fetchProducts } from '../../actions/productActions'
+import product from '../../reducers/product';
 
 
 const Product = ({ 
     product:{_id, name, image, brand, category,description, price}
 }) => {
+    // console.log(product)
     return(
         <Card className="card">
             <CardActionArea>
@@ -45,8 +47,8 @@ Product.propTypes = {
     product: PropTypes.object.isRequired,
   };
   
-  const mapStateToProps = state => ({
-  product: state.product
-});
+//   const mapStateToProps = state => ({
+//   product: state.product
+// });
 
-export default connect(mapStateToProps, { fetchProducts })(Product);
+export default Product;
