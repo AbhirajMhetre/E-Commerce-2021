@@ -22,7 +22,12 @@ const SignIn = (props) => {
     e.preventDefault();
     axios.post('/api/users/login', formData)
       .then(res => {
-        props.history.push(`/products`)
+        //props.history.push(`/products`)
+        if(res.data.isAdmin){
+          props.history.push(`/admin`)
+        } else {
+          props.history.push(`/products`)
+        }
       } )
       .catch(err=> {
         alert("username or password is invalid")

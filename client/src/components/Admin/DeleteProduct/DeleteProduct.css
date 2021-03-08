@@ -1,0 +1,14 @@
+.delete-product{
+    top:50%;
+    margin-left: 50%;
+}
+
+.paper{
+    position: absolute;
+    width: 600;
+    border: 2px solid #ffffff;
+    box-shadow: darkgray;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+}

@@ -1,0 +1,7 @@
+.admin-header{
+    background: hsl(213, 28%, 19%);
+    margin-top: 63px;
+    color:lavenderblush;
+    display: flex;
+    justify-content: center;
+}

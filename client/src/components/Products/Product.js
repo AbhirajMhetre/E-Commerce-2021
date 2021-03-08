@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button } from '@material-ui/core';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import './Product.css';
-import { fetchProducts } from '../../actions/productActions'
-import product from '../../reducers/product';
+
 
 
 const Product = ({ 
@@ -47,8 +45,5 @@ Product.propTypes = {
     product: PropTypes.object.isRequired,
   };
   
-//   const mapStateToProps = state => ({
-//   product: state.product
-// });
 
 export default Product;

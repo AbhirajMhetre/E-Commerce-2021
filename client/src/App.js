@@ -8,6 +8,7 @@ import Home from './container/Home/Home';
 import Cart from './container/Cart/Cart';
 import SignUp from './components/Auth/SignUp/SignUp';
 import SignIn from './components/Auth/SignIn/SignIn';
+import AdminPage from './container/Admin/AdminPage'
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/users" exact component={SignUp}/>
           <Route path="/orders" exact component={Cart} />
           <Route path="/products" component={Home} />
+          <Route path="/admin" exact component={AdminPage} />
         </Switch>
       </BrowserRouter>
       

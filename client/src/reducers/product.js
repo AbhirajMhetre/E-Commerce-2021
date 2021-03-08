@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, PRODUCT_ERROR } from '../actions/actionTypes';
+import { FETCH_PRODUCTS, PRODUCT_ERROR, ADD_PRODUCT } from '../actions/actionTypes';
 
 const initialState = {
     products: [],
@@ -23,6 +23,12 @@ const initialState = {
           error: payload,
           loading: false
         };
+        case ADD_PRODUCT:
+          return {
+            ...state,
+            products: [payload, ...state.products],
+            loading: false
+          };
       default:
         return state;
     }
