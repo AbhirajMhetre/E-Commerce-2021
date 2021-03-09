@@ -2,14 +2,16 @@ import React from 'react';
 import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button } from '@material-ui/core';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import './Product.css';
+import './AdminProduct.css';
+import { deleteProduct } from '../../../actions/productActions';
 
 
 const Product = ({ 
-    product:{_id, name, image, brand, category,description, price}
+    product:{_id, name, image, brand, category,description, price},
+    deleteProduct
 }) => {
-    // console.log(product)
     return(
         <Card className="card" id={_id}>
             <CardActionArea>
@@ -38,9 +40,8 @@ const Product = ({
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <Button variant="outlined" color="primary">Add To Cart</Button>
-                <Button variant="outlined" color="primary">Buy Now</Button>
+            <CardActions style={{justifyContent:'center'}}>
+                <Button variant="contained" color="secondary" onClick={() => deleteProduct(_id)}>DELETE PRODUCT</Button>
             </CardActions>
         </Card>
     );
@@ -48,7 +49,11 @@ const Product = ({
 
 Product.propTypes = {
     product: PropTypes.object.isRequired,
+    deleteProduct: PropTypes.func.isRequired,
   };
   
+//   const mapStateToProps = state => ({
+//     product: state.product
+//   });
 
-export default Product;
+export default connect( null, { deleteProduct })(Product);

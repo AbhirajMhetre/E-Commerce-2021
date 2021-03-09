@@ -145,4 +145,8 @@ CreateProduct.propTypes = {
   addProduct: PropTypes.func.isRequired
 };
 
-export default connect(null, { addProduct })(CreateProduct);
+const mapStateToProps = state => ({
+  product: state.product
+  });
+
+export default connect(mapStateToProps, { addProduct })(CreateProduct);

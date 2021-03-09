@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, PRODUCT_ERROR, ADD_PRODUCT } from './actionTypes';
+import { FETCH_PRODUCTS, PRODUCT_ERROR, ADD_PRODUCT, DELETE_PRODUCT } from './actionTypes';
 import axios from 'axios';
 
 export const fetchProducts = () => async dispatch => {
@@ -19,35 +19,85 @@ export const fetchProducts = () => async dispatch => {
 
 };
 
+export const addProduct = (formData) => async dispatch => {
 
-export const addProduct = formData => async (dispatch) => {
-  
-  let token = localStorage.getItem('token');
-  // let Bearer = 'Bearer'
-   console.log(`Bearer&${token}`);
-  
+  const token = localStorage.getItem('token');
+    
   const config = {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer&${token}`,  
+      'Authorization': `Bearer ${token}`
     },
-  };
+  }
 
   try {
-    // console.log(localStorage.getItem('token'));
     const res = await axios.post('/api/products', formData, config);
     
     dispatch({
-      type: ADD_PRODUCT,
-      payload: res.data
-    });
-    // console.log(formData)
+        type: ADD_PRODUCT,
+        payload: res.data
+      });
+    } catch (err) {
+      dispatch({
+        type: PRODUCT_ERROR,
+        payload: { msg: err.response.statusText, status: err.response.status }
+      });
+    }
     
-    // dispatch(alert('PRODUCT ADDED'));
+  };
+
+
+// export const addProduct = formData => async (dispatch) => {
+  
+//   let token = localStorage.getItem('token');
+//   // let Bearer = 'Bearer'
+//   //  console.log(`Bearer&${token}`);
+  
+//   const config = {
+//     headers: {
+//       'Content-Type': 'application/json',
+//       'Authorization': `Bearer&${token}`,  
+//     },
+//   };
+
+//   try {
+//     // console.log(localStorage.getItem('token'));
+//     const res = await axios.post('/api/products', formData, config);
+    
+//     dispatch({
+//       type: ADD_PRODUCT,
+//       payload: res.data
+//     });
+//     // console.log(formData)
+    
+//     // dispatch(alert('PRODUCT ADDED'));
+//   } catch (err) {
+//     dispatch({
+//       type: PRODUCT_ERROR,
+//       payload: { msg: err.response.statusText, status: err.response.status }
+//     });
+//   }
+// }
+
+export const deleteProduct =_id => async dispatch => {
+  try {
+
+    const token = localStorage.getItem('token');
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+
+    await axios.delete(`/api/products/${_id}`, config)
+
+    dispatch({
+      type: DELETE_PRODUCT,
+    })
   } catch (err) {
     dispatch({
       type: PRODUCT_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
-    });
+      });
   }
 }

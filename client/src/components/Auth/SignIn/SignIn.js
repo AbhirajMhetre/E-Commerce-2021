@@ -22,6 +22,7 @@ const SignIn = (props) => {
     e.preventDefault();
     axios.post('/api/users/login', formData)
       .then(res => {
+        localStorage.setItem("token", res.data.token);
         //props.history.push(`/products`)
         if(res.data.isAdmin){
           props.history.push(`/admin`)
