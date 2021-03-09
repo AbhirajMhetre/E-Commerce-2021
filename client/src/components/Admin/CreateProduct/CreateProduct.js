@@ -33,7 +33,6 @@ const CreateProduct = ({ addProduct }) => {
     const onSubmit = (e) => {
         e.preventDefault();
         addProduct(formData);
-        // console.log(formData)
     }
 
     return(

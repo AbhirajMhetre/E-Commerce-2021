@@ -6,7 +6,7 @@ const DeleteProduct = () => {
     return(
         <div className='delete-product'>
            <div className="paper">
-                sdfghjk
+                Delete the product ...
             </div>
         </div>
     );

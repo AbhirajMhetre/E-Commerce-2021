@@ -16,7 +16,7 @@ import Product from './Product';
     return props.product.loading ? (
     <div>loading..</div>
   ) : (
-        <div className="item">
+        <div className="items">
             {props.product.products.products.map(product => (
             <Product key={product._id} product={product}/>
             

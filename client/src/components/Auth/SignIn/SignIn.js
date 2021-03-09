@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Avatar, Button, CssBaseline, TextField, Grid, Typography,Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { NavLink, Redirect, Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
  
 import './SignIn.css';
@@ -15,8 +15,8 @@ const SignIn = (props) => {
   const { email, password } = formData;
   
 
-  const onChange = e =>
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+  const onChange = event =>
+    setFormData({ ...formData, [event.target.id]: event.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -25,6 +25,7 @@ const SignIn = (props) => {
         //props.history.push(`/products`)
         if(res.data.isAdmin){
           props.history.push(`/admin`)
+          
         } else {
           props.history.push(`/products`)
         }

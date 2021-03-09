@@ -10,10 +10,11 @@ const SignUp = (props) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    confirmPassword:''
   });
 
-  const { name, email, password } = formData;
+  const { name, email, password, confirmPassword } = formData;
 
   const onChange = (event) => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
@@ -81,6 +82,20 @@ const SignUp = (props) => {
                 id="password"
                 autoComplete="current-password"
                 value={password}
+                onChange={onChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="confirmPassword"
+                label="Confirm Password"
+                type="password"
+                id="confirmPassword"
+                autoComplete="current-password"
+                value={confirmPassword}
                 onChange={onChange}
               />
             </Grid>

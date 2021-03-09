@@ -20,18 +20,23 @@ export const fetchProducts = () => async dispatch => {
 };
 
 
-export const addProduct = formData => async dispatch => {
-  console.log(formData)
+export const addProduct = formData => async (dispatch) => {
+  
+  let token = localStorage.getItem('token');
+  // let Bearer = 'Bearer'
+   console.log(`Bearer&${token}`);
+  
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer&${token}`,  
+    },
   };
 
   try {
-    console.log('before');
+    // console.log(localStorage.getItem('token'));
     const res = await axios.post('/api/products', formData, config);
-    console.log('after');
+    
     dispatch({
       type: ADD_PRODUCT,
       payload: res.data

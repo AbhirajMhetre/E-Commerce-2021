@@ -10,12 +10,13 @@ const protect = asyncHandler(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     try {
-      token = req.headers.authorization.split(' ')[1]
-
-      const decoded = jwt.verify(token, process.env.JWT_SECRET)
-
+      token = req.headers.authorization.split('&')[1]
+      // console.log('Token in auth is', token);
+      
+      const decoded = jwt.verify(token, process.env.JWT_SECRET, { algorithms: ['RS256'] })
+      console.log(decoded.id);
       req.user = await User.findById(decoded.id).select('-password')
-
+     
       next()
     } catch (error) {
       console.error(error)
