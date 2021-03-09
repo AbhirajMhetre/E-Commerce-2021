@@ -1,0 +1,37 @@
+.Nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: lightblue;
+    padding: 10px;
+}
+
+.Nav img {
+    border-radius: 5px;
+}
+
+.User-cart{
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    margin-top: 7px;
+}
+
+.User-cart a {
+    text-decoration: none;
+    color: black;
+}
+
+.Nav-Input input {
+    width: 500px;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.Nav-Input button {
+    width: 60px;
+    height: 40px;
+    border-radius: 5px;
+    background: forestgreen;
+    color: white;
+}

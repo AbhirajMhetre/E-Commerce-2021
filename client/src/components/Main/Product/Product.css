@@ -1,0 +1,39 @@
+.Main{
+    
+    padding: 0 20px 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Item-card{
+    
+    padding-bottom: 10px;
+    background-color: whitesmoke;
+}
+
+.Item-card .Item-image {
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    position: relative;
+    
+}
+
+.Item-card h1{
+    margin: -10px 0;
+    font-size: x-large;
+}
+
+.Item-card button{
+    background-color: cadetblue;
+    color: white;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-family: cursive;
+}
+
+.Item-card h2{
+    margin: 5px 0;
+}
