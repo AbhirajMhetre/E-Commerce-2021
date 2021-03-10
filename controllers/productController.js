@@ -24,7 +24,7 @@ const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find()
     
 
-  res.json({ products })
+  res.json( products )
   } catch (err) {
       console.error(err.message);
       errorHandler(err, req, res);

@@ -79,7 +79,7 @@ export const addProduct = (formData) => async dispatch => {
 //   }
 // }
 
-export const deleteProduct =_id => async dispatch => {
+export const deleteProduct = (id) => async (dispatch) => {
   try {
 
     const token = localStorage.getItem('token');
@@ -89,10 +89,11 @@ export const deleteProduct =_id => async dispatch => {
       },
     }
 
-    await axios.delete(`/api/products/${_id}`, config)
+    await axios.delete(`/api/products/${id}`, config)
 
     dispatch({
       type: DELETE_PRODUCT,
+      payload: id
     })
   } catch (err) {
     dispatch({

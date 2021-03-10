@@ -9,7 +9,7 @@ const initialState = {
   
   export default function(state = initialState, action) {
     const { type, payload } = action;
-
+    console.log(state);
     switch (type) {
       case FETCH_PRODUCTS:
         return {
@@ -36,6 +36,7 @@ const initialState = {
             loading: false
           };
         case DELETE_PRODUCT:
+          
           return {
             ...state,
             products: state.products.filter(product => product._id !== payload),

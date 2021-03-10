@@ -8,16 +8,16 @@ import Product from './AdminProduct';
 
 
 // const Products = ({ fetchProducts, product: { products, loading } }) => {
-  const Products = (props) => {
+  const Products = (props ) => {
     useEffect(() => {
     props.fetchProducts();
   }, [props.fetchProducts]);
-
+   
     return props.product.loading ? (
     <div>loading..</div>
   ) : (
         <div className="items">
-            {props.product.products.products.map(product => (
+            {props.product.products.map(product => (
             <Product key={product._id} product={product}/>
             
         ))}
