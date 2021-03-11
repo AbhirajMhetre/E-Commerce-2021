@@ -3,12 +3,11 @@ import { IconButton, Modal } from '@material-ui/core';
 
 import './AdminHeader.css';
 import CreateProduct from '../../Admin/CreateProduct/CreateProduct';
-import DeleteProduct from '../../Admin/DeleteProduct/DeleteProduct'
 
-const AdminHeader = () => {
+
+const AdminHeader = (props) => {
 
     const [openCreateModel, setOpenCreateModel] = useState(false);
-    const [openDeleteModel, setOpenDeleteModel] = useState(false);
 
     const handleOpenCreateModel = () => {
         setOpenCreateModel(true)
@@ -16,14 +15,6 @@ const AdminHeader = () => {
 
     const handleCloseCreateModel = () => {
         setOpenCreateModel(false)
-    }
-
-    const handleOpenDeleteModel = () => {
-        setOpenDeleteModel(true)
-    }
-
-    const handleCloseDeleteModel = () => {
-        setOpenDeleteModel(false)
     }
 
     return(
@@ -39,18 +30,6 @@ const AdminHeader = () => {
                 onClose={handleCloseCreateModel}
            >
                 <CreateProduct/>
-           </Modal>
-           <IconButton 
-                color='inherit'
-                onClick={handleOpenDeleteModel}
-            >
-               Delete Product
-           </IconButton>
-           <Modal
-                open={openDeleteModel} 
-                onClose={handleCloseDeleteModel}
-           >
-                <DeleteProduct/>
            </Modal>
         </div>
     );

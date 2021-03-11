@@ -7,26 +7,20 @@
 
 .cart-item{
     margin:30px;
-    display: flex;
-    width: 700px;
+    /* display: flex; */
+    width: 1000px;
     background-color: rgb(248, 242, 245);
     border-radius: 23px;
     padding: 30px;
 }
 
 .item-image{
-    height: 250px;
+    height: 200px;
     /* padding: 20px; */
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 .item-details{
     margin:30px;
-}
-
-.item-price{
-    display: flex;
-    /* justify-content: flex-end; */
-    margin: 30px;
 }
 

@@ -8,7 +8,7 @@ import './AdminProduct.css';
 import { deleteProduct } from '../../../actions/productActions';
 
 
-const Product = ({ 
+const AdminProduct = ({ 
     product:{_id, name, image, brand, category,description, price},
     deleteProduct
 }) => {
@@ -47,7 +47,7 @@ const Product = ({
     );
 }
 
-Product.propTypes = {
+AdminProduct.propTypes = {
     product: PropTypes.object.isRequired,
     deleteProduct: PropTypes.func.isRequired,
   };
@@ -56,4 +56,4 @@ Product.propTypes = {
 //     product: state.product
 //   });
 
-export default connect( null, { deleteProduct })(Product);
+export default connect( null, { deleteProduct })(AdminProduct);

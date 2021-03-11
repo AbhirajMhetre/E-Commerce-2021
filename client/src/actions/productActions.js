@@ -47,37 +47,7 @@ export const addProduct = (formData) => async dispatch => {
   };
 
 
-// export const addProduct = formData => async (dispatch) => {
-  
-//   let token = localStorage.getItem('token');
-//   // let Bearer = 'Bearer'
-//   //  console.log(`Bearer&${token}`);
-  
-//   const config = {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Authorization': `Bearer&${token}`,  
-//     },
-//   };
 
-//   try {
-//     // console.log(localStorage.getItem('token'));
-//     const res = await axios.post('/api/products', formData, config);
-    
-//     dispatch({
-//       type: ADD_PRODUCT,
-//       payload: res.data
-//     });
-//     // console.log(formData)
-    
-//     // dispatch(alert('PRODUCT ADDED'));
-//   } catch (err) {
-//     dispatch({
-//       type: PRODUCT_ERROR,
-//       payload: { msg: err.response.statusText, status: err.response.status }
-//     });
-//   }
-// }
 
 export const deleteProduct = (id) => async (dispatch) => {
   try {
@@ -102,3 +72,5 @@ export const deleteProduct = (id) => async (dispatch) => {
       });
   }
 }
+
+

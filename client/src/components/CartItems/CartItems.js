@@ -1,40 +1,66 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ShoppingImg from '../../assets/images/shopping.PNG';
-import { Typography } from '@material-ui/core'
+import { Grid, IconButton, Typography } from '@material-ui/core'
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 import './CartItems.css';
+import { addToCart, removeFromCart } from '../../actions/cartActions';
 
-const CartItems = () => {
+const CartItem = (props) => {
+    //const pid = localStorage.getItem('pid'); 
+    useEffect(() => {
+          props.addToCart()
+      }, [props.addToCart])
+    
+    //console.log(props);
     return(
         <>
             <div className="cart">
-                <div className="cart-item">
-                    <div>
+            {props.cart.cartItems.map((item)=>(
+                <Grid container className="cart-item" key={item.product}>
+                    
+                    <Grid item xs={5}>
                         <img 
-                            src={ShoppingImg} 
+                            src={item.image} 
                             alt="img"
                             className="item-image"                        
                         /> 
-                    </div>
-                    <div className="item-details">
+                    </Grid>
+                    <Grid item xs={4} className="item-details">
                         <Typography gutterBottom variant="h5" component="h2">
-                            Shopping Item Name
+                            {item.name}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            Shopping Item Description
-                        </Typography>
-                    </div>
-                    <div className="item-price">
                         <Typography gutterBottom variant="h5" component="h2">
-                            <AttachMoneyIcon style={{height:'40px', marginBottom:'-12px'}} />20.00
+                            <AttachMoneyIcon style={{height:'40px', marginBottom:'-12px'}} />{item.price}
                         </Typography>
-                    </div>
-                </div>
+                    </Grid>
+                    <Grid item xs={3} className="buttons">
+                        <IconButton onClick={() => props.removeFromCart(item.product)}>
+                            <DeleteForeverIcon/>
+                        </IconButton>
+                    </Grid>
+                    
+                </Grid>
+            ))}
                 
             </div>
         </>
     );
 }
 
-export default CartItems;
+CartItem.propTypes = {
+    addToCart: PropTypes.func.isRequired,
+    removeFromCart: PropTypes.func.isRequired,
+    cart: PropTypes.object.isRequired,
+    cartItems: PropTypes.object.isRequired
+  };
+
+  const mapStateToProps = state => ({
+    cart: state.cart,
+    cartItems: state.cartItems
+  });
+  
+export default connect(mapStateToProps, { addToCart, removeFromCart })(CartItem);

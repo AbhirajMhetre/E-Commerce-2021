@@ -2,14 +2,22 @@ import React from 'react';
 import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button } from '@material-ui/core';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import PropTypes from 'prop-types';
-
+import { useHistory } from "react-router-dom";
 import './Product.css';
-
+import { addToCart } from '../../actions/cartActions';
+import { connect } from 'react-redux';
 
 const Product = ({ 
-    product:{_id, name, image, brand, category,description, price}
-}) => {
-    // console.log(product)
+    product:{_id, name, image, brand, category,description, price},
+    addToCart
+},props) => {
+    //const history = useHistory();
+    // const addToCartHandler = () => {
+    //     history.push(`/orders/${_id}`)
+    //     // localStorage.setItem('pid', JSON.stringify(_id))
+    //     // console.log(localStorage.getItem('pid'));
+        
+    //   }
     return(
         <Card className="card" id={_id}>
             <CardActionArea>
@@ -39,7 +47,7 @@ const Product = ({
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button variant="outlined" color="primary">Add To Cart</Button>
+                <Button variant="outlined" color="primary" onClick={()=>addToCart(_id)}>Add To Cart</Button>
                 <Button variant="outlined" color="primary">Buy Now</Button>
             </CardActions>
         </Card>
@@ -48,7 +56,8 @@ const Product = ({
 
 Product.propTypes = {
     product: PropTypes.object.isRequired,
+    addToCart: PropTypes.func.isRequired
   };
   
 
-export default Product;
+export default connect(null, { addToCart })(Product);

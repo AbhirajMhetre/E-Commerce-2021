@@ -9,12 +9,6 @@ const Cart = () => {
         <>
             <div className="cart">
                 <CartItems/>
-                <CartItems/>
-                <CartItems/>
-                <CartItems/>
-                <CartItems/>
-                <CartItems/>
-                <CartItems/>
             </div>
         </>
     );

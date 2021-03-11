@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, PRODUCT_ERROR, ADD_PRODUCT, GET_PRODUCT, DELETE_PRODUCT } from '../actions/actionTypes';
+import { FETCH_PRODUCTS, PRODUCT_ERROR, ADD_PRODUCT, DELETE_PRODUCT } from '../actions/actionTypes';
 
 const initialState = {
     products: [],
@@ -9,7 +9,7 @@ const initialState = {
   
   export default function(state = initialState, action) {
     const { type, payload } = action;
-    console.log(state);
+    
     switch (type) {
       case FETCH_PRODUCTS:
         return {
@@ -29,19 +29,13 @@ const initialState = {
             products: [payload, ...state.products],
             loading: false
           };
-        case GET_PRODUCT:
-          return {
-            ...state,
-            post: payload,
-            loading: false
-          };
         case DELETE_PRODUCT:
-          
           return {
             ...state,
             products: state.products.filter(product => product._id !== payload),
             loading: false
           };
+        
       default:
         return state;
     }

@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { fetchProducts } from '../../../actions/productActions';
 
 import './AdminProducts.css';
-import Product from './AdminProduct';
+import AdminProduct from './AdminProduct';
 
 
-// const Products = ({ fetchProducts, product: { products, loading } }) => {
-  const Products = (props ) => {
+// const AdminProducts = ({ fetchProducts, product: { products, loading } }) => {
+  const AdminProducts = (props ) => {
     useEffect(() => {
     props.fetchProducts();
   }, [props.fetchProducts]);
@@ -18,14 +18,14 @@ import Product from './AdminProduct';
   ) : (
         <div className="items">
             {props.product.products.map(product => (
-            <Product key={product._id} product={product}/>
+            <AdminProduct key={product._id} product={product}/>
             
         ))}
         </div>
       );
 };
 
-Products.propTypes = {
+AdminProducts.propTypes = {
   fetchProducts: PropTypes.func.isRequired,
   product: PropTypes.object.isRequired
 };
@@ -38,4 +38,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { fetchProducts }
-)(Products);
+)(AdminProducts);

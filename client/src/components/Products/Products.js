@@ -12,14 +12,13 @@ import Product from './Product';
     useEffect(() => {
     props.fetchProducts();
   }, [props.fetchProducts]);
-
+    // console.log(props);
     return props.product.loading ? (
     <div>loading..</div>
   ) : (
         <div className="items">
-            {props.product.products.products.map(product => (
-            <Product key={product._id} product={product}/>
-            
+            {props.product.products.map(product => (
+            <Product key={product._id} product={product}/>  
         ))}
         </div>
       );

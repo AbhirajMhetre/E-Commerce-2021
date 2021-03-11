@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { addProduct } from '../../../actions/productActions';
-import './CreateProduct.css'
+import './CreateProduct.css';
 
-const CreateProduct = ({ addProduct }) => {
 
+const CreateProduct = ({ addProduct }, props) => {
+    
     const [formData, setFormData] = useState({
         name: '',
         price: '',
