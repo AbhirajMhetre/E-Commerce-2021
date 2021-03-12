@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import ShoppingImg from '../../assets/images/shopping.PNG';
-import { Grid, IconButton, Typography } from '@material-ui/core'
+import { Button, FormControl, Grid, NativeSelect, Typography } from '@material-ui/core'
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,12 +9,10 @@ import './CartItems.css';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 
 const CartItem = (props) => {
-    //const pid = localStorage.getItem('pid'); 
     useEffect(() => {
           props.addToCart()
       }, [props.addToCart])
-    
-    //console.log(props);
+
     return(
         <>
             <div className="cart">
@@ -38,14 +35,41 @@ const CartItem = (props) => {
                         </Typography>
                     </Grid>
                     <Grid item xs={3} className="buttons">
-                        <IconButton onClick={() => props.removeFromCart(item.product)}>
+                        <FormControl> 
+                            <NativeSelect
+                                value={item.qty}
+                                onChange={(e) =>
+                                    props.addToCart(item.product, Number(e.target.value))
+                                }
+                            >
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
+                                <option value={5}>5</option>
+                                <option value={6}>6</option>
+                                <option value={7}>7</option>
+                                <option value={8}>8</option>
+                                <option value={9}>9</option>
+                                <option value={10}>10</option>
+                            </NativeSelect>
+                        </FormControl>
+                        <Button onClick={() => props.removeFromCart(item.product)}>
                             <DeleteForeverIcon/>
-                        </IconButton>
-                    </Grid>
-                    
+                        </Button>
+                    </Grid>   
                 </Grid>
             ))}
-                
+            <h2>
+                Subtotal ({props.cart.cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                items
+              </h2>
+              <div style={{fontWeight:'700', fontSize:'25px'}}>
+              $
+              {props.cart.cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                .toFixed(2)}
+              </div>
             </div>
         </>
     );

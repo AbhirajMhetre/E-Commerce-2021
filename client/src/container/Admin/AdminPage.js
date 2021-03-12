@@ -2,7 +2,7 @@ import React from 'react';
 
 import './AdminPage.css';
 import AdminHeader from '../../components/Header/AdminHeader/AdminHeader';
-import AdminProducts from '../../components/Admin/DeleteProduct/AdminProducts'
+import AdminProducts from '../../components/Admin/AdminProducts/AdminProducts'
 
 const AdminPage = () => {   
     return(

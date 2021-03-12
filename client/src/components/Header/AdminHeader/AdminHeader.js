@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { IconButton, Modal } from '@material-ui/core';
+import { Button, Modal } from '@material-ui/core';
 
 import './AdminHeader.css';
 import CreateProduct from '../../Admin/CreateProduct/CreateProduct';
 
 
-const AdminHeader = (props) => {
+const AdminHeader = () => {
 
     const [openCreateModel, setOpenCreateModel] = useState(false);
 
@@ -19,12 +19,13 @@ const AdminHeader = (props) => {
 
     return(
         <div className="admin-header">
-           <IconButton 
+           <Button 
+                variant="outlined"
                 color='inherit'
                 onClick={handleOpenCreateModel}
             >
                Create Product
-           </IconButton>
+           </Button>
            <Modal
                 open={openCreateModel} 
                 onClose={handleCloseCreateModel}

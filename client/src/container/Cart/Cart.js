@@ -1,8 +1,8 @@
 import React from 'react';
 
-
 import './Cart.css';
 import CartItems from '../../components/CartItems/CartItems';
+
 
 const Cart = () => {
     return(
@@ -13,5 +13,5 @@ const Cart = () => {
         </>
     );
 }
-
+  
 export default Cart;

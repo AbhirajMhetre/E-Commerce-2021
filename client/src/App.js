@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Home from './container/Home/Home';
 import Navbar from './components/Navbar/Navbar';
-// import Header from './components/Header/Header';
 import Cart from './container/Cart/Cart';
 import SignUp from './components/Auth/SignUp/SignUp';
 import SignIn from './components/Auth/SignIn/SignIn';
@@ -21,7 +20,7 @@ function App() {
         <Switch>
           <Route path="/users/login" exact component={SignIn}/>
           <Route path="/users" exact component={SignUp}/>
-          <Route path="/orders" exact component={Cart} />
+          <Route path="/cart" exact component={Cart} />
           <Route path="/products" exact component={Home} />
           <Route path="/admin" exact component={AdminPage} />
           <Route path="/" exact component={WelcomePage} />

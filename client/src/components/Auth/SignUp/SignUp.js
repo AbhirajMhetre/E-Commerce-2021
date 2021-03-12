@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Avatar, Button, CssBaseline, TextField, Grid, Typography,Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 
 import './SignUp.css';
@@ -22,14 +22,17 @@ const SignUp = (props) => {
     
   const onSubmit = (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+    } else {
     axios.post('/api/users', formData)
       .then(res => {
-        props.history.push(`/products`)
+        props.history.push(`/products`);
       } )
       .catch(err=> {
-        alert("username or password is invalid")
+        alert("email or password is invalid")
       })
-    // props.history.push(`/products`)
+    }
   };
 
   return (
@@ -60,6 +63,7 @@ const SignUp = (props) => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                type="email"
                 variant="outlined"
                 required
                 fullWidth

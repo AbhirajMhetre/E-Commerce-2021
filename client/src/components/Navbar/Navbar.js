@@ -1,23 +1,12 @@
-import React, { useState } from 'react';
-import { AppBar, IconButton, Toolbar } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import React from 'react';
+import { AppBar, Button, IconButton, Toolbar, Typography } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import './Navbar.css'
 import { NavLink } from 'react-router-dom';
-import Products from '../Products/Products'
 
-
-
-const Navbar = (props) => {
-    const [search, setSearch] = useState('');
-
-    const handleInput = event => {
-        setSearch(event.target.value)
-        console.log(search);
-    }
-
+const Navbar = () => {
+    
     return(
         <>
             <AppBar className="appbar" style={{backgroundColor:'#0f1111'}}>
@@ -28,31 +17,25 @@ const Navbar = (props) => {
                     >
                       <NavLink to="/products" style={{ textDecoration: 'none', color:'inherit' }}>E-Commerce</NavLink>  
                     </IconButton>
-                    <div className="search"> 
-                        <input 
-                            type="text"
-                            className="search-input"
-                            placeholder="Search.."
-                            value={search}
-                            onChange={handleInput}
-                        />
-                        <div className="search-icon">
-                            <IconButton>
-                                <SearchIcon /> 
-                            </IconButton>  
-                        </div>
-                        
+                    <div className='navbar-text'>
+                       <Typography variant="h5">Holi Festival Sale is started!! </Typography> 
                     </div>
                     <div>
                         <NavLink exact to="/users" style={{ textDecoration: 'none', color:'inherit' }}>
-                        <IconButton color="inherit">
-                          <AccountCircle />
-                        </IconButton>
+                            <Button 
+                                variant="outlined" 
+                                color="secondary" 
+                                onClick={()=>{
+                                    localStorage.removeItem('cartItems')
+                                }}
+                            >
+                                Log Out
+                            </Button>
                         </NavLink>
                     </div>
                     <div>   
                         <IconButton color="inherit">
-                        <NavLink exact to="/orders" style={{ textDecoration: 'none', color:'inherit' }}>
+                        <NavLink exact to="/cart" style={{ textDecoration: 'none', color:'inherit' }}>
                             <ShoppingCartIcon/></NavLink>
                         </IconButton>
                     </div>

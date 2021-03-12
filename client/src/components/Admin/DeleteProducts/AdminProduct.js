@@ -29,13 +29,13 @@ const AdminProduct = ({
                             <AttachMoneyIcon style={{height:'40px', marginBottom:'-12px'}} />{price}
                         </Typography>
                         <Typography gutterBottom variant="h6" component="h2">
-                            <u>Brand:</u>{brand}
+                            Brand:  {brand}
                         </Typography>
                         <Typography gutterBottom variant="h6" component="h2">
-                            <u>Category:</u> {category}
+                            Category: {category}
                         </Typography>
                     
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="h6" color="textSecondary" component="p">
                         {description}
                     </Typography>
                 </CardContent>
@@ -52,8 +52,5 @@ AdminProduct.propTypes = {
     deleteProduct: PropTypes.func.isRequired,
   };
   
-//   const mapStateToProps = state => ({
-//     product: state.product
-//   });
 
 export default connect( null, { deleteProduct })(AdminProduct);

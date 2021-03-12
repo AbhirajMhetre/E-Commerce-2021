@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Avatar, Button, CssBaseline, TextField, Grid, Typography,Container } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { NavLink } from 'react-router-dom';
@@ -11,19 +11,19 @@ const SignIn = (props) => {
     email: '',
     password:''
   });
-
   const { email, password } = formData;
+  // const [error, setError] = useState(false)
   
-
-  const onChange = event =>
+  const onChange = event => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
+  }
+    
 
   const onSubmit = (e) => {
     e.preventDefault();
     axios.post('/api/users/login', formData)
       .then(res => {
         localStorage.setItem("token", res.data.token);
-        //props.history.push(`/products`)
         if(res.data.isAdmin){
           props.history.push(`/admin`)
           
@@ -34,8 +34,9 @@ const SignIn = (props) => {
       .catch(err=> {
         alert("username or password is invalid")
       })
-    //console.log(formData);
   };
+
+  
   return (
     <Container component="main" maxWidth="xs" style={{marginBottom:'20px'}}>
       <CssBaseline />
@@ -59,6 +60,7 @@ const SignIn = (props) => {
             autoFocus
             value={email}
             onChange={onChange}
+            // error={error}
           />
           <TextField
             variant="outlined"
@@ -72,6 +74,7 @@ const SignIn = (props) => {
             autoComplete="current-password"
             value={password}
             onChange={onChange}
+            // error={error}
           />
           <Button
             type="submit"

@@ -58,12 +58,13 @@ const CreateProduct = ({ addProduct }, props) => {
                       <Grid item xs={12}>
                         <TextField
                           autoComplete="price"
+                          type="number"
                           name="price"
                           variant="outlined"
                           required
                           fullWidth
                           id="price"
-                          label="Price"
+                          label="Price (in integers)"
                           autoFocus
                           value={price}
                           onChange={onChange}
@@ -91,7 +92,7 @@ const CreateProduct = ({ addProduct }, props) => {
                           required
                           fullWidth
                           id="image"
-                          label="Image"
+                          label="Image (Enter web URL only)"
                           autoFocus
                           value={image}
                           onChange={onChange}

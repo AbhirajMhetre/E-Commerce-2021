@@ -2,22 +2,16 @@ import React from 'react';
 import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button } from '@material-ui/core';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import PropTypes from 'prop-types';
-import { useHistory } from "react-router-dom";
+import { connect } from 'react-redux';
+
 import './Product.css';
 import { addToCart } from '../../actions/cartActions';
-import { connect } from 'react-redux';
+
 
 const Product = ({ 
     product:{_id, name, image, brand, category,description, price},
     addToCart
-},props) => {
-    //const history = useHistory();
-    // const addToCartHandler = () => {
-    //     history.push(`/orders/${_id}`)
-    //     // localStorage.setItem('pid', JSON.stringify(_id))
-    //     // console.log(localStorage.getItem('pid'));
-        
-    //   }
+}) => {
     return(
         <Card className="card" id={_id}>
             <CardActionArea>
@@ -41,7 +35,7 @@ const Product = ({
                             <u>Category:</u> {category}
                         </Typography>
                     
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography variant="h6" color="textSecondary" component="p">
                         {description}
                     </Typography>
                 </CardContent>
