@@ -18,9 +18,15 @@ const Login = (props) => {
   const onSubmit = e => {
     e.preventDefault();
     axios.post('/api/users/login',formData).then(res => {
-     props.history.push('/products')
+      localStorage.setItem("token", res.data.token);
+      if(res.data.isAdmin){
+        props.history.push('/admin-ui')
+      }else{
+        props.history.push('/products')
+      }
+     
     }).catch(err => {
-      console.log(err)
+      alert("Enter valid username and password")
     })
   };
 

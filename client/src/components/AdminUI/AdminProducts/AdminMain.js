@@ -1,55 +1,25 @@
-import React, {useEffect,useContext, useState} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {fetchProducts} from '../../actions/ProductActions'
-import "./Main.css";
-import Product from './Product/Product';
-import SearchVal from '../Header/Navbar/Navbar';
-
-
+import {fetchProducts} from '../../../actions/ProductActions';
+import "./AdminMain.css";
+import Product from './AdminProduct';
 
 function Main(props) {
-
-    const[searchItem, setSearchItem] = useState("");
-
-    const val = useContext(SearchVal);
-   console.log(val);
 
     useEffect(() => {
         props.fetchProducts();
         }, [props.fetchProducts]);
-
-
+        
         return props.product.loading ? (
             <div>loading..</div>
             ) : (
-
-             <div>
-             
-             <div className="Nav-Input">
-                <input type="text"  placeholder="Search your favourite products" 
-                onChange={e => setSearchItem(e.target.value)}/>
-                <button>Search</button>
-            </div>   
-
             <div className="Main">
-            {props.product.products.filter((product) =>{
-                if(searchItem == ""){
-                    return product
-                }else if (product.name.toLowerCase().startsWith(searchItem.toLowerCase())){
-                    return product
-                }
-                
-            }).map(product => (
+            {props.product.products.map(product => (
             <Product key={product._id} product={product}/>
-           
-            ))}
-         
-            </div>
-
-            </div> 
             
-           
+            ))}
+            </div>
             );
             };
   

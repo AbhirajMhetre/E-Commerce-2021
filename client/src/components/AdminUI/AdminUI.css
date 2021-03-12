@@ -82,3 +82,36 @@ form input {
     border-radius: 10px;
     margin-bottom: 20px;
 }
+
+label {
+    font-weight: bold;
+}
+
+.Batch{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.Batch1{
+margin-right: 15px;
+}
+
+.Batch2{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.Batch3{
+    margin-left: 15px;
+}
+
+.SubmitButton{
+    background-color: #2d315a;
+    color: white;
+    border-radius: 10px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}

@@ -1,8 +1,8 @@
-import { FETCH_PRODUCTS, PRODUCT_ERROR, ADD_PRODUCT } from '../actions/ActionTypes';
+import { FETCH_PRODUCTS, PRODUCT_ERROR, ADD_PRODUCT, DELETE_PRODUCT } from '../actions/ActionTypes';
 
 const initialState = {
     products: [],
-    product: {},
+    product: null,
     loading: true,
     error: {}
   };
@@ -26,9 +26,15 @@ const initialState = {
       case ADD_PRODUCT:
         return {        
           ...state,
-        product: payload,
+        products: [payload, ...state.products],
         loading: false
         }
+        case DELETE_PRODUCT:
+          return {
+            ...state,
+            products: state.products.filter(product => product._id !== payload),
+            loading: false
+          };
       default:
         return state;
     }

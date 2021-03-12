@@ -1,29 +1,42 @@
-import Main from "../../../Images/shoponline.png";
-import React from "react";
+import Main1 from "../../../Images/shoponline.png";
+import React, { useState, createContext, useEffect } from "react";
 import "./Navbar.css";
 import Logo from '../../../Images/logo.png';
 import Cart from '../../../Images/cart.png';
+import Main from "../../Main/Main";
+import { Link} from 'react-router-dom';
 
+export const SearchVal = createContext();
 
 function Navbar() {
+
+  const[searchItem, setSearchItem] = useState("");
+
+
+    
     return (
-      <div>
+     <div>
+      <SearchVal.Provider value={searchItem}>
         <div className="Nav">
          
-            <img src={Main} width='200px' height='70px'></img>
+        <Link to="/products"><img src={Main1} width='200px' height='70px'></img></Link>
             
-            <div className="Nav-Input">
-                <input type="text" name="" value="" placeholder="Search your favourite products"/>
-                <button>Search</button>
+            <div className="">
+                <h2>Brace Yourselves, Black Friday Sale is Coming!!</h2>
             </div>
 
             <div className="User-cart">
-               <a href="/users/login"><img src={Logo} width='40px' height='40px'></img>User</a> 
-                <a><img src={Cart} width='40px' height='40px'></img>Cart</a>
+            <Link to="/users/login"><img src={Logo} width='40px' height='40px'></img>User</Link>
+               <Link to="/cart"> <img src={Cart} width='40px' height='40px'></img>Cart</Link>
             </div>
         </div>
+       
+        </SearchVal.Provider>
       </div>
     );
+
+   
   }
 
   export default Navbar;
+  

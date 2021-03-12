@@ -1,0 +1,27 @@
+.InitialPage{
+    padding: 70px 100px 0 100px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Users{
+    display: flex;
+    flex-direction: column;
+}
+
+.Users button{
+    margin-top: 40px;
+    height: 80px;
+    width: 300px;
+    border-radius: 15px;
+    font-size: 25px;
+    background-color: #2d315a;
+    color: white;
+    outline: none;
+    cursor: pointer;
+}
+
+.Title{
+    font-size: 50px;
+    color: #2d315a;
+}

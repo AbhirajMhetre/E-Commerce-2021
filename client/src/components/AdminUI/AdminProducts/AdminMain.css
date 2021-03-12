@@ -9,6 +9,7 @@
 .Item-card{
     width: 22%;
     padding-bottom: 10px;
+    margin-bottom: 50px;
     background-color: whitesmoke;
 }
 
@@ -37,10 +38,6 @@
 
 .Item-card h2{
     margin: 5px 0;
-}
-
-.Nav-Input{
-    margin-bottom: 50px;
 }
 
 

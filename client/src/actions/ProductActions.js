@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS, PRODUCT_ERROR, ADD_PRODUCT } from './ActionTypes';
+import { FETCH_PRODUCTS, PRODUCT_ERROR, ADD_PRODUCT, DELETE_PRODUCT } from './ActionTypes';
 import axios from 'axios';
 
 export const fetchProducts = () => async dispatch => {
@@ -23,6 +23,8 @@ payload: { msg: err.response.statusText, status: err.response.status }
 export const addProduct = (postData) => async dispatch => {
 
     const token = localStorage.getItem('token');
+    
+    
     const config = {
         headers: {
             'Content-Type': 'application/json',
@@ -45,4 +47,29 @@ export const addProduct = (postData) => async dispatch => {
     }
     
     };
+
+
+    export const deleteProduct = (id) => async (dispatch) => {
+        try {
+      
+          const token = localStorage.getItem('token');
+          const config = {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+      
+          await axios.delete(`/api/products/${id}`, config)
+      
+          dispatch({
+            type: DELETE_PRODUCT,
+            payload: id
+          })
+        } catch (err) {
+          dispatch({
+            type: PRODUCT_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+            });
+        }
+      }
 

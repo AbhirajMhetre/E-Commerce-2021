@@ -8,6 +8,8 @@ import Error from "./ErrorPage";
 import AdminUI from "./components/AdminUI/AdminUI";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import InitialPage from "./components/InitialPage/InitialPage";
+import Cart from "./components/Cart/Cart";
 
 
 function App() {
@@ -15,11 +17,13 @@ function App() {
     <div className="App">
    
       <Switch>
-        <Route exact path="/products" component={Header}/>
+        <Route exact path="/" component={InitialPage}/>
+        <Route path="/products" component={Header}/>
        
         <Route path="/admin-ui" component={AdminUI}/>
         <Route path="/users/login" component={Login}/> 
         <Route path="/users" component={Register}/> 
+        <Route path="/cart" component={Cart}/> 
         <Route component={Error}/>
       </Switch>
   

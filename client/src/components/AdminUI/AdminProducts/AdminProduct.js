@@ -1,16 +1,16 @@
 import React from 'react';
 import ProductImage from '../../../Images/shoes.png'
-import './Product.css';
+import './AdminProduct.css';
 import PropTypes from 'prop-types';
-import {useDispatch} from 'react-redux';
+import { connect } from 'react-redux';
+import {deleteProduct} from '../../../actions/ProductActions';
 
 
 
-function Product({product:{_id, name, image, brand, category,description, price}})  {
-
-  const dispatch = useDispatch()
-  let product = null;
-
+function Product({
+    product:{_id, name, image, brand, category,description, price},
+    deleteProduct
+    }) {
     return (
      
             
@@ -20,14 +20,8 @@ function Product({product:{_id, name, image, brand, category,description, price}
         <h1>{price}</h1>
         <p>{description}</p>
         <div>
-            <button>Buy Now</button>
+            <button onClick={() => deleteProduct(_id)}>Delete</button>
             
-            <button onClick={(getState) =>  {
-              
-               dispatch({type: 'ADD_TO_CART', 
-            payload: {product : {_id,name,price,description,image}}}); 
-            
-            }}>Add to Cart</button>
         </div>
         </div>
       
@@ -37,9 +31,10 @@ function Product({product:{_id, name, image, brand, category,description, price}
 
   Product.propTypes = {
     product: PropTypes.object.isRequired,
+    deleteProduct: PropTypes.func.isRequired
     };
 
-  export default Product;
+  export default connect(null, { deleteProduct })(Product);
 
 
 
