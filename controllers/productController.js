@@ -8,24 +8,10 @@ import { notFound, errorHandler } from '../middleware/errorMiddleware.js'
 const getProducts = asyncHandler(async (req, res) => {
   try{
 
-  const pageSize = 10
-  const page = Number(req.query.pageNumber) || 1
+  const products = await Product.find()
 
-  const keyword = req.query.keyword
-    ? {
-        name: {
-          $regex: req.query.keyword,
-          $options: 'i',
-        },
-      }
-    : {}
 
-  const count = await Product.countDocuments({ ...keyword })
-  const products = await Product.find({ ...keyword })
-    .limit(pageSize)
-    .skip(pageSize * (page - 1))
-
-  res.json({ products, page, pages: Math.ceil(count / pageSize) })
+  res.json(products)
   } catch (err) {
       console.error(err.message);
       errorHandler(err, req, res);
