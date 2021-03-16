@@ -26,7 +26,8 @@ const Navbar = () => {
                                 variant="outlined" 
                                 color="secondary" 
                                 onClick={()=>{
-                                    localStorage.removeItem('cartItems')
+                                    localStorage.removeItem("cartItems");
+                                    localStorage.removeItem("token")
                                 }}
                             >
                                 Log Out

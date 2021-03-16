@@ -2,14 +2,18 @@ import React from 'react';
 
 import './AdminPage.css';
 import AdminHeader from '../../components/Header/AdminHeader/AdminHeader';
-import AdminProducts from '../../components/Admin/AdminProducts/AdminProducts'
+import AdminProducts from '../../components/Admin/AdminProducts/AdminProducts';
+import Navbar from '../../components/Navbar/Navbar';
 
 const AdminPage = () => {   
     return(
-        <div className="admin-page">
-            <AdminHeader/>
-            <AdminProducts/>
-        </div>
+        <>
+            <Navbar/>
+            <div className="admin-page">
+                <AdminHeader/>
+                <AdminProducts/>
+            </div>
+        </>
     );
 }
 

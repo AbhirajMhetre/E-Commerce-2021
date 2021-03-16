@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, TextField, Button } from '@material-ui/core';
+import { Grid, TextField, Button, Modal } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -8,7 +8,6 @@ import './CreateProduct.css';
 
 
 const CreateProduct = ({ addProduct }, props) => {
-    
     const [formData, setFormData] = useState({
         name: '',
         price: '',
@@ -26,7 +25,16 @@ const CreateProduct = ({ addProduct }, props) => {
         brand,
         category
      } = formData;
+    
+     const [openCreateModel, setOpenCreateModel] = useState(false);
 
+     const handleOpenCreateModel = () => {
+         setOpenCreateModel(true)
+     }
+ 
+     const handleCloseCreateModel = () => {
+         setOpenCreateModel(false)
+     }
     const onChange = (event) => {
         setFormData({ ...formData, [event.target.id]: event.target.value });
     }
@@ -34,9 +42,24 @@ const CreateProduct = ({ addProduct }, props) => {
     const onSubmit = (e) => {
         e.preventDefault();
         addProduct(formData);
+        setOpenCreateModel(false)
     }
 
     return(
+      <>
+        <Button 
+                variant="outlined"
+                color='inherit'
+                onClick={handleOpenCreateModel}
+            >
+               Create Product
+           </Button>
+        <Modal
+            open={openCreateModel} 
+            onClose={handleCloseCreateModel}
+        >
+                
+        
         <div className='create-product'>
             <div className="paper">
                 <form className="form" noValidate>
@@ -140,6 +163,8 @@ const CreateProduct = ({ addProduct }, props) => {
                 </form>
             </div>
         </div>
+        </Modal>
+      </>
     );
 }
 

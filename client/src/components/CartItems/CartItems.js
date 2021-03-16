@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, FormControl, Grid, NativeSelect, Typography } from '@material-ui/core'
+import { Button, FormControl, Grid, Select, Typography } from '@material-ui/core'
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -36,10 +36,11 @@ const CartItem = (props) => {
                     </Grid>
                     <Grid item xs={3} className="buttons">
                         <FormControl> 
-                            <NativeSelect
+                            <Select
                                 value={item.qty}
                                 onChange={(e) =>
-                                    props.addToCart(item.product, Number(e.target.value))
+                                   props.addToCart(item.product, Number(e.target.value))
+                                //    e.target.value
                                 }
                             >
                                 <option value={1}>1</option>
@@ -52,13 +53,15 @@ const CartItem = (props) => {
                                 <option value={8}>8</option>
                                 <option value={9}>9</option>
                                 <option value={10}>10</option>
-                            </NativeSelect>
+                            </Select>
                         </FormControl>
                         <Button onClick={() => props.removeFromCart(item.product)}>
                             <DeleteForeverIcon/>
                         </Button>
-                    </Grid>   
+                    </Grid>  
+                     {console.log(item.qty)}
                 </Grid>
+                
             ))}
             <h2>
                 Subtotal ({props.cart.cartItems.reduce((acc, item) => acc + item.qty, 0)})
