@@ -11,10 +11,21 @@ const initialState = {
     switch (type) {
       
         case ADD_ITEM_TO_CART:
+        const existItem = state.cartItems.find((x) => x.product === payload.product)
+
+          if (existItem) {
+            return {
+              ...state,
+              cartItems: state.cartItems.map((x) =>
+                x.product === existItem.product ? payload : x
+              ),
+            }
+          } else {
           return {
               ...state,
               cartItems: [...state.cartItems, payload],
-          }            
+          }  
+        }          
         case REMOVE_FROM_CART:
           return {
             ...state,

@@ -41,7 +41,7 @@ const Product = ({
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button variant="outlined" color="primary" onClick={()=>addToCart(_id)}>Add To Cart</Button>
+                <Button variant="outlined" color="primary" onClick={()=>addToCart(_id,1)}>Add To Cart</Button>
                 <Button variant="outlined" color="primary">Buy Now</Button>
             </CardActions>
         </Card>
