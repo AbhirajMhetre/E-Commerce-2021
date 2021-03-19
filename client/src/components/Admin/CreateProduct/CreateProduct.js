@@ -7,7 +7,7 @@ import { addProduct } from '../../../actions/productActions';
 import './CreateProduct.css';
 
 
-const CreateProduct = ({ addProduct }, props) => {
+const CreateProduct = ({ addProduct }) => {
     const [formData, setFormData] = useState({
         name: '',
         price: '',

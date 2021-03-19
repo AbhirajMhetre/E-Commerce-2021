@@ -21,7 +21,7 @@ const Navbar = () => {
                        <Typography variant="h5">Holi Festival Sale is started!! </Typography> 
                     </div>
                     <div>
-                        <NavLink exact to="/users" style={{ textDecoration: 'none', color:'inherit' }}>
+                        <NavLink exact to="/users/login" style={{ textDecoration: 'none', color:'inherit' }}>
                             <Button 
                                 variant="outlined" 
                                 color="secondary" 

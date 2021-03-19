@@ -58,13 +58,12 @@ const CartItem = (props) => {
                         <Button onClick={() => props.removeFromCart(item.product)}>
                             <DeleteForeverIcon/>
                         </Button>
-                    </Grid>  
-                     {/* {console.log(item.qty)} */}
+                    </Grid> 
                 </Grid>
                 
             ))}
             <h2>
-                Subtotal ({props.cart.cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                Subtotal ({props.cart.cartItems.reduce((acc, item) => Number(acc) + Number(item.qty), 0)})
                 items
               </h2>
               <div style={{fontWeight:'700', fontSize:'25px'}}>

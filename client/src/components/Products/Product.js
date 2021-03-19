@@ -1,5 +1,5 @@
-import React from 'react';
-import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button } from '@material-ui/core';
+import React, { useState } from 'react';
+import { Card, CardActionArea, CardContent, CardActions, CardMedia, Typography, Button, FormControl, NativeSelect } from '@material-ui/core';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -12,6 +12,7 @@ const Product = ({
     product:{_id, name, image, brand, category,description, price},
     addToCart
 }) => {
+    const [qty, setQty] = useState(1)
     return(
         <Card className="card" id={_id}>
             <CardActionArea>
@@ -38,10 +39,41 @@ const Product = ({
                     <Typography variant="h6" color="textSecondary" component="p">
                         {description}
                     </Typography>
+                    <Typography variant="h6">
+                        <u>Select Quantity</u> :    
+                    <FormControl style={{marginLeft:'20px'}}>
+                            <NativeSelect
+                                value={qty}
+                                onChange={(e) =>
+                                   setQty(e.target.value)
+                                }
+                            >
+                                <option value={1}>1</option>
+                                <option value={2}>2</option>
+                                <option value={3}>3</option>
+                                <option value={4}>4</option>
+                                <option value={5}>5</option>
+                                <option value={6}>6</option>
+                                <option value={7}>7</option>
+                                <option value={8}>8</option>
+                                <option value={9}>9</option>
+                                <option value={10}>10</option>
+                            </NativeSelect>
+                        </FormControl>
+                        </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button variant="outlined" color="primary" onClick={()=>addToCart(_id,1)}>Add To Cart</Button>
+                <Button 
+                    variant="outlined" 
+                    color="primary" 
+                    onClick={()=>
+                            {
+                                addToCart(_id,qty)
+                                // setQty(null)
+                            }
+                        }
+                >Add To Cart</Button>
                 <Button variant="outlined" color="primary">Buy Now</Button>
             </CardActions>
         </Card>

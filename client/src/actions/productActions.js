@@ -41,8 +41,8 @@ export const addProduct = (formData) => async dispatch => {
         type: PRODUCT_ERROR,
         payload: { msg: err.response.statusText, status: err.response.status }
       });
-    }
-    
+      alert(err + `  Product cannot be added`);
+    }  
   };
 
 

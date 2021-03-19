@@ -2,7 +2,6 @@ import { ADD_ITEM_TO_CART, REMOVE_FROM_CART } from '../actions/actionTypes';
 
 const initialState = {
     cartItems: [],
-   // totalPrice: 0
   };
   
   export default function(state = initialState, action) {
@@ -14,6 +13,7 @@ const initialState = {
         const existItem = state.cartItems.find((x) => x.product === payload.product)
 
           if (existItem) {
+            
             return {
               ...state,
               cartItems: state.cartItems.map((x) =>
