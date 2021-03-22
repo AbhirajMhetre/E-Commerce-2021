@@ -1,14 +1,21 @@
-import React from 'react';
-import {useSelector,useDispatch} from "react-redux";
+import React, {useState,useEffect} from 'react';
+import {useSelector,useDispatch, connect} from "react-redux";
 import currencyFormatter from "currency-formatter";
 import "./Cart.css";
 import Navbar from '../Header/Navbar/Navbar';
+import {addToCart} from '../../actions/ProductActions';
+import PropTypes from 'prop-types';
+import product from '../../reducers/product';
 
-const Cart = () => {
+const Cart = (props) => {
     
+    useEffect(() => {
+        props.addToCart()
+    }, [props.addToCart])
+
     const { products, totalPrice } = useSelector(state => state.CartReducer)
     const dispatch = useDispatch();
-  
+    console.log(props)
 
     return (
         <div className="cart">
@@ -29,19 +36,29 @@ const Cart = () => {
                             <div onClick={() => dispatch({type:'DELETE', payload: product._id})}>
                             
                                 <button>Delete Item</button>
+
+                                
                             
                             </div>
-                            
+                            <div className="Quantity">
+                            {product.quantity > 1 ? <h2 onClick={() => props.addToCart(product._id,product.quantity - 1)}>-</h2>: null}
+                               <h2 style={{fontWeight:'bold'}} className="ProductQuantity"> {product.quantity}</h2>
+                               <h2 style={{fontWeight:'bold'}} onClick={ () => props.addToCart(product._id,product.quantity + 1)}>+</h2>
+                            </div> 
                         </div>
+                        
                         
                      </div>
                  ))}
                 </div>
                         <div className="TotalPrice">
                             <h2>Total Price : </h2>
-                            <h2>{currencyFormatter.format(totalPrice, {code: 'USD'})}</h2>
-                            {totalPrice <= 0 ? null : <button onClick={() => {alert("Order Successful")}} style={{backgroundColor:"green"}}>Checkout</button>}
+                          
+                            <h1 className="Tprice">${products
+                                .reduce((acc, product) => acc + product.quantity * product.price, 0)
+                                .toFixed(2)}</h1>
                             
+                                
                         </div>
                 </div>
             </div>
@@ -49,5 +66,18 @@ const Cart = () => {
     )
 }
 
-export default Cart
+Cart.propTypes = {
+    addToCart: PropTypes.func.isRequired,
+    
+  };
 
+const mapStateToProps = state => ({
+    CartReducer: state.CartReducer
+  });
+  
+export default connect(mapStateToProps, { addToCart })(Cart);
+
+
+//                            {totalPrice <= 0 ? null : <button onClick={() => {alert("Order Successful")}} style={{backgroundColor:"green"}}>Checkout</button>}
+
+//<h2>{currencyFormatter.format(totalPrice, {code: 'USD'})}</h2>

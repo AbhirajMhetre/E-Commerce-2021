@@ -10,13 +10,21 @@ const CartReducer = (state = initState, action) => {
    
     switch(action.type){
         case 'ADD_TO_CART':
-            console.log(action.payload.product._id);
+            //console.log(state);
             const check = state.products.find(prd => prd._id === action.payload.product._id);
+            console.log(action.payload.product);
           if(check){
-               return state;
+            const Tprice = state.totalPrice + (action.payload.product.quantity * action.payload.product.price);
+               return {
+                   ...state,
+                   products: state.products.map((x) =>
+                x._id === check._id ? action.payload.product : x
+              ),
+                   totalPrice: Tprice
+               }
           }else{
                 const Tprice = state.totalPrice + action.payload.product.price;
-                console.log(Tprice);
+                
                 return {
                     ...state, products: [...state.products, action.payload.product], totalPrice: Tprice
                 }
@@ -31,6 +39,8 @@ const CartReducer = (state = initState, action) => {
                     products: filtered,
                     totalPrice: state.totalPrice - findPro.price
         }
+
+        
 
         default:
             return state;

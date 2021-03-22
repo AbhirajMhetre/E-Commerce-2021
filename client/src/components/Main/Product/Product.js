@@ -6,10 +6,11 @@ import {useDispatch} from 'react-redux';
 
 
 
-function Product({product:{_id, name, image, brand, category,description, price}})  {
+function Product({product:{_id, name, image, brand, category,description, price, quantity}})  {
 
   const dispatch = useDispatch()
   let product = null;
+  quantity = 1;
 
     return (
      
@@ -25,7 +26,7 @@ function Product({product:{_id, name, image, brand, category,description, price}
             <button onClick={() =>  {
               
                dispatch({type: 'ADD_TO_CART', 
-            payload: {product : {_id,name,price,description,image}}}); 
+            payload: {product : {_id,name,price,description,image, quantity}}}); 
             
             }}>Add to Cart</button>
         </div>
