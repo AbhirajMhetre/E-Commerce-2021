@@ -6,14 +6,7 @@ import "./AdminUI.css";
 import {addProduct} from "../../actions/ProductActions";
 import { connect } from 'react-redux';
 import AdminMain from "./AdminProducts/AdminMain";
-
-//import axios from 'axios';
-
-//import Logo from '../../Images/logo.png';
-// import IMG from '../../Images/sales.png';
-// import IMG2 from '../../Images/sales2.png'
-// import ProductImage from '../../Images/shoes.png'
-
+import { Link } from 'react-router-dom';
 
 
 function AdminUI({addProduct}) {
@@ -55,8 +48,8 @@ function AdminUI({addProduct}) {
            
 
             <div className="User-cart-1">
-               <a href="/users/login"><h4 style={{color:"white"}}>Admin</h4></a> 
-                <a><h4 style={{color:"white"}}>Add Products</h4></a>
+               <Link to="/users/login"><h4 style={{color:"white"}}>Logout</h4> </Link>
+               <Link to="/admin-ui"><h4 style={{color:"white"}}>Add Products</h4></Link> 
             </div>
         </div>
 
@@ -122,65 +115,3 @@ function AdminUI({addProduct}) {
 
   export default connect(mapStateToProps, { addProduct })(AdminUI);
 
-
-
-
-
-
-
-
-
-
-
-
-
-//   <div className="AdminMain">
-//             <div className="Orders">
-//                <h1>ORDERS RECIEVED</h1>
-//                <div className="Item-card-1">
-//                 <div style={{ backgroundImage: `url(${ProductImage})` }} className="Item-image"></div>
-//                 <h3>Order ID: #10436</h3>
-//                 <p>Item Name</p>
-//                 <p>Price: 2999</p>
-//                 <p>Customer Name : Virat Kohli</p>
-//                 <p>Customer Address : XYZ Road, Gurgaon, India</p>
-//                 <div>
-//                     <button>Dispatch Item</button>
-//                 </div>
-                
-//             </div>
-//             <div className="Item-card-1">
-//                 <div style={{ backgroundImage: `url(${ProductImage})` }} className="Item-image"></div>
-//                 <h3>Order ID: #10986</h3>
-//                 <p>Item Name</p>
-//                 <p>Price: 1999 Rs.</p>
-//                 <p>Customer Name : Rohit Sharma</p>
-//                 <p>Customer Address : XYZ Road, Colaba, Mumbai</p>
-//                 <div>
-//                     <button>Dispatch Item</button>
-//                 </div>
-                
-//             </div>
-//             </div>
-            
-//             <div className="AdminImages">
-//                 <h1>SALES OVERVIEW</h1>
-//                 <img src={IMG} width='700px'></img>
-//                 <img src={IMG2} width='700px'></img>
-//             </div>
-//         </div>
-
-
- //props.history.push('/products')
-
-
-       
-
-        
-       
-    //    axios.post('/api/products',productData).then(res => {
-       
-    //     console.log(res);
-    //    }).catch(err => {
-    //      console.log(err)
-    //    })

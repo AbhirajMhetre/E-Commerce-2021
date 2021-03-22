@@ -22,7 +22,7 @@ function Product({product:{_id, name, image, brand, category,description, price}
         <div>
             <button>Buy Now</button>
             
-            <button onClick={(getState) =>  {
+            <button onClick={() =>  {
               
                dispatch({type: 'ADD_TO_CART', 
             payload: {product : {_id,name,price,description,image}}}); 

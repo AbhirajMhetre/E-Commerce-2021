@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {fetchProducts} from '../../../actions/ProductActions';
 import "./AdminMain.css";
 import Product from './AdminProduct';
+import Spinner from '../../Spinner/Spinner';
 
 function Main(props) {
 
@@ -12,7 +13,7 @@ function Main(props) {
         }, [props.fetchProducts]);
         
         return props.product.loading ? (
-            <div>loading..</div>
+            <Spinner/>
             ) : (
             <div className="Main">
             {props.product.products.map(product => (
@@ -40,53 +41,3 @@ function Main(props) {
                 )(Main);
 
 
-//   <div className="Item-card">
-//                 <div style={{ backgroundImage: `url(${ProductImage})` }} className="Item-image"></div>
-//                 <h2>Item Name</h2>
-//                 <h1>999 Rs.</h1>
-//                 <p>Order description and specification</p>
-//                 <div>
-//                     <button>Buy Now</button>
-//                     <button>Add to Cart</button>
-//                 </div>
-//             </div>
-//             <div className="Item-card">
-//                 <div style={{ backgroundImage: `url(${ProductImage})` }} className="Item-image"></div>
-//                 <h2>Item Name</h2>
-//                 <h1>999 Rs.</h1>
-//                 <p>Order description and specification</p>
-//                 <div>
-//                     <button>Buy Now</button>
-//                     <button>Add to Cart</button>
-//                 </div>
-//             </div>
-//             <div className="Item-card">
-//                 <div style={{ backgroundImage: `url(${ProductImage})` }} className="Item-image"></div>
-//                 <h2>Item Name</h2>
-//                 <h1>999 Rs.</h1>
-//                 <p>Order description and specification</p>
-//                 <div>
-//                     <button>Buy Now</button>
-//                     <button>Add to Cart</button>
-//                 </div>
-//             </div>
-//             <div className="Item-card">
-//                 <div style={{ backgroundImage: `url(${ProductImage})` }} className="Item-image"></div>
-//                 <h2>Item Name</h2>
-//                 <h1>999 Rs.</h1>
-//                 <p>Order description and specification</p>
-//                 <div>
-//                     <button>Buy Now</button>
-//                     <button>Add to Cart</button>
-//                 </div>
-//             </div>
-
-
-// <div className="Main">
-            
-// <Product/>
-// <Product/>
-// <Product/>
-// <Product/>
-
-// </div>

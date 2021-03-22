@@ -6,39 +6,36 @@ import { Link, Redirect } from 'react-router-dom';
 // import { register } from '../../actions/auth';
 
 
-const Register = () => {
+const Register = (props) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: ''
+    password: '',
+    password2:''
+   
   });
 
-  const { name, email, password } = formData;
+  const { name, email, password, password2 } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.id]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
-   
-    axios.post('/api/users',formData).then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
-    })
-    console.log(formData)
-    
-    // if (password !== password2) {
-    //   setAlert('Passwords do not match', 'danger');
-    // } else {
-    //   register({ name, email, password });
 
-    // }
+    if (password !== password2) {
+      alert('Passwords do not match', 'danger');
+    } else {
+      axios.post('/api/users',formData).then(res => {
+        console.log(res)
+        props.history.push('/users/login')
+      }).catch(err => {
+        console.log(err)
+        alert(err)
+      })
+      console.log(formData)
+    }
   };
-
-  // if (isAuthenticated) {
-  //   return <Redirect to="/dashboard" />;
-  // }
 
   return (
     <Fragment>
@@ -80,6 +77,17 @@ const Register = () => {
             onChange={onChange}
           />
         </div>
+
+        <div className="form-group">
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            name="password2"
+            id="password2"
+            value={password2}
+            onChange={onChange}
+          />
+        </div>
      
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
@@ -94,12 +102,4 @@ const Register = () => {
 
 export default Register;
 
-// <div className="form-group">
-// <input
-//   type="password"
-//   placeholder="Confirm Password"
-//   name="password2"
-//   value={password2}
-//   onChange={onChange}
-// />
-// </div>
+

@@ -16,10 +16,10 @@
     margin-top: 7px;
 }
 
-.User-cart a {
+ .User-cart h4 {
     text-decoration: none;
-    color: black;
-}
+   
+} 
 
 .AdminUI-Input input {
     width: 500px;

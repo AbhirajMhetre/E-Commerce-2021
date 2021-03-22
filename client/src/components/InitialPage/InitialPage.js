@@ -18,7 +18,7 @@ function InitialPage() {
         </div>
         <div className="Users">
           <img src={Guest} height="300px" width="300px"></img>
-          <Link to="/products"><button>Continue as a guest user</button></Link>
+          <Link to="/users"><button>Not an existing user? Sign up here</button></Link>
          
         </div>
         

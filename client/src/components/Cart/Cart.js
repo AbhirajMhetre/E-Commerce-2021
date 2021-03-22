@@ -5,11 +5,10 @@ import "./Cart.css";
 import Navbar from '../Header/Navbar/Navbar';
 
 const Cart = () => {
-
+    
     const { products, totalPrice } = useSelector(state => state.CartReducer)
     const dispatch = useDispatch();
-    console.log(products.name);
-    //console.log(products.products.name)
+  
 
     return (
         <div className="cart">
@@ -32,6 +31,7 @@ const Cart = () => {
                                 <button>Delete Item</button>
                             
                             </div>
+                            
                         </div>
                         
                      </div>
@@ -40,6 +40,8 @@ const Cart = () => {
                         <div className="TotalPrice">
                             <h2>Total Price : </h2>
                             <h2>{currencyFormatter.format(totalPrice, {code: 'USD'})}</h2>
+                            {totalPrice <= 0 ? null : <button onClick={() => {alert("Order Successful")}} style={{backgroundColor:"green"}}>Checkout</button>}
+                            
                         </div>
                 </div>
             </div>
@@ -49,25 +51,3 @@ const Cart = () => {
 
 export default Cart
 
-
-
-
-
-// <div className="container">
-//                 <h1>Your Cart</h1>
-//                 {products.length > 0 ? <div>
-//                     <div>
-//                         Add more Items to your cart
-//                     </div>
-                    // <div>
-                    //  {products.map(product => (
-                    //      <div key={product_id}>
-                    //      {product.name}
-                    //      {product.description}
-                    //      {product.price}
-                    //      </div>
-                    //  ))}
-                    // </div>
-                    
-//                     </div> : 'Your cart is empty'}
-//             </div>

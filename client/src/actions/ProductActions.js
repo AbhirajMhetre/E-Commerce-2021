@@ -7,13 +7,13 @@ try {
 const res = await axios.get('/api/products');
 
 dispatch({
-type: FETCH_PRODUCTS,
-payload: res.data
+    type: FETCH_PRODUCTS,
+    payload: res.data
 });
 } catch (err) {
 dispatch({
-type: PRODUCT_ERROR,
-payload: { msg: err.response.statusText, status: err.response.status }
+  type: PRODUCT_ERROR,
+  payload: { msg: err.response.statusText, status: err.response.status }
 });
 }
 
@@ -36,13 +36,13 @@ export const addProduct = (postData) => async dispatch => {
     const res = await axios.post('/api/products', postData, config);
     
     dispatch({
-    type: ADD_PRODUCT,
-    payload: res.data
+      type: ADD_PRODUCT,
+      payload: res.data
     });
     } catch (err) {
     dispatch({
-    type: PRODUCT_ERROR,
-    payload: { msg: err.response.statusText, status: err.response.status }
+      type: PRODUCT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
     });
     }
     

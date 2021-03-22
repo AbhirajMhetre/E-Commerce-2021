@@ -19,7 +19,6 @@ function App() {
       <Switch>
         <Route exact path="/" component={InitialPage}/>
         <Route path="/products" component={Header}/>
-       
         <Route path="/admin-ui" component={AdminUI}/>
         <Route path="/users/login" component={Login}/> 
         <Route path="/users" component={Register}/> 
