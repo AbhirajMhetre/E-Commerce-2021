@@ -1,21 +1,16 @@
-import React, {useState,useEffect} from 'react';
+import React from 'react';
 import {useSelector,useDispatch, connect} from "react-redux";
 import currencyFormatter from "currency-formatter";
 import "./Cart.css";
 import Navbar from '../Header/Navbar/Navbar';
-import {addToCart} from '../../actions/ProductActions';
+import {updateQuantity} from '../../actions/ProductActions';
 import PropTypes from 'prop-types';
-import product from '../../reducers/product';
 
 const Cart = (props) => {
-    
-    useEffect(() => {
-        props.addToCart()
-    }, [props.addToCart])
 
     const { products, totalPrice } = useSelector(state => state.CartReducer)
     const dispatch = useDispatch();
-    console.log(props)
+    //console.log(props)
 
     return (
         <div className="cart">
@@ -33,17 +28,15 @@ const Cart = (props) => {
                             <div><h2>Name : {product.name}</h2></div>
                             
                             <div><h2>Price : {currencyFormatter.format(product.price, {code: 'USD'})}</h2></div>
-                            <div onClick={() => dispatch({type:'DELETE', payload: product._id})}>
-                            
-                                <button>Delete Item</button>
 
-                                
-                            
+                            <div onClick={() => dispatch({type:'DELETE', payload: product._id})}>
+                                <button>Delete Item</button>
                             </div>
+
                             <div className="Quantity">
-                            {product.quantity > 1 ? <h2 onClick={() => props.addToCart(product._id,product.quantity - 1)}>-</h2>: null}
+                            {product.quantity > 1 ? <h2 onClick={() => props.updateQuantity(product._id,product.quantity - 1)}>-</h2>: null}
                                <h2 style={{fontWeight:'bold'}} className="ProductQuantity"> {product.quantity}</h2>
-                               <h2 style={{fontWeight:'bold'}} onClick={ () => props.addToCart(product._id,product.quantity + 1)}>+</h2>
+                               <h2 style={{fontWeight:'bold'}} onClick={ () => props.updateQuantity(product._id,product.quantity + 1)}>+</h2>
                             </div> 
                         </div>
                         
@@ -57,8 +50,7 @@ const Cart = (props) => {
                             <h1 className="Tprice">${products
                                 .reduce((acc, product) => acc + product.quantity * product.price, 0)
                                 .toFixed(2)}</h1>
-                            
-                                
+                                                        
                         </div>
                 </div>
             </div>
@@ -66,18 +58,23 @@ const Cart = (props) => {
     )
 }
 
-Cart.propTypes = {
-    addToCart: PropTypes.func.isRequired,
+    Cart.propTypes = {
+        addToCart: PropTypes.func.isRequired,
+        
+    };
+
+    const mapStateToProps = state => ({
+        CartReducer: state.CartReducer
+    });
     
-  };
-
-const mapStateToProps = state => ({
-    CartReducer: state.CartReducer
-  });
-  
-export default connect(mapStateToProps, { addToCart })(Cart);
+    export default connect(mapStateToProps, { updateQuantity })(Cart);
 
 
-//                            {totalPrice <= 0 ? null : <button onClick={() => {alert("Order Successful")}} style={{backgroundColor:"green"}}>Checkout</button>}
+
+
+
+
+    
+// {totalPrice <= 0 ? null : <button onClick={() => {alert("Order Successful")}} style={{backgroundColor:"green"}}>Checkout</button>}
 
 //<h2>{currencyFormatter.format(totalPrice, {code: 'USD'})}</h2>

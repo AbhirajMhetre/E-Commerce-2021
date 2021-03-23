@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductImage from '../../../Images/shoes.png'
+
 import './Product.css';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
@@ -9,7 +9,7 @@ import {useDispatch} from 'react-redux';
 function Product({product:{_id, name, image, brand, category,description, price, quantity}})  {
 
   const dispatch = useDispatch()
-  let product = null;
+ 
   quantity = 1;
 
     return (

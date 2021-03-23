@@ -1,5 +1,5 @@
 import Main1 from "../../../Images/shoponline.png";
-import React, { useState, createContext, useEffect } from "react";
+import React from "react";
 import "./Navbar.css";
 import Logo from '../../../Images/logo.png';
 import Cart from '../../../Images/cart.png';
@@ -22,7 +22,7 @@ function Navbar() {
             </div>
 
             <div className="User-cart">
-            <Link to="/users/login"><img src={Logo} width='40px' height='40px'></img>Logout</Link>
+            <Link to="/users/login"><div onClick={()=> {localStorage.removeItem('token')}}><img src={Logo} width='40px' height='40px'></img>Logout</div></Link>
                <Link to="/cart"> <img src={Cart} width='40px' height='40px'></img>Cart</Link>
             </div>
         </div>

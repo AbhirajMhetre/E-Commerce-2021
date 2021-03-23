@@ -48,7 +48,7 @@ function AdminUI({addProduct}) {
            
 
             <div className="User-cart-1">
-               <Link to="/users/login"><h4 style={{color:"white"}}>Logout</h4> </Link>
+               <Link to="/users/login"><h4 style={{color:"white"}} onClick={()=> {localStorage.removeItem('token')}}>Logout</h4> </Link>
                <Link to="/admin-ui"><h4 style={{color:"white"}}>Add Products</h4></Link> 
             </div>
         </div>

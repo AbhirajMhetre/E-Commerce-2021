@@ -1,7 +1,5 @@
 .ProductDisplay{
-    display: flex;
-   
-    
+    display: flex;   
 }
 
 button{
@@ -12,7 +10,6 @@ button{
     font-family: cursive;
     font-size: 15px;
     border-radius: 10px;
-
 }
 
 button:hover{

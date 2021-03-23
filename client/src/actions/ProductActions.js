@@ -74,11 +74,10 @@ export const addProduct = (postData) => async dispatch => {
         }
       }
 
-      export const addToCart = (id, quantity) => async (dispatch, getState) => {
+      export const updateQuantity = (id, quantity) => async (dispatch) => {
 
-        console.log(id)
+       // console.log(id)
         const product = await axios.get(`/api/products/${id}`);
-        console.log(product.data)
 
         dispatch({
           type: ADD_TO_CART,
@@ -90,10 +89,7 @@ export const addProduct = (postData) => async dispatch => {
             description : product.data.description,
             price: product.data.price,
             quantity: quantity
-          }
-            
-          
-          }
+          }}
         })
        }
 
