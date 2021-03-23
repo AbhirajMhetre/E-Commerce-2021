@@ -21,7 +21,7 @@ function Product({product:{_id, name, image, brand, category,description, price,
         <h1>{price}</h1>
         <p>{description}</p>
         <div>
-            <button>Buy Now</button>
+         
             
             <button onClick={() =>  {
               
